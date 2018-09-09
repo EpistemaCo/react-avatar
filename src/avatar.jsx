@@ -270,12 +270,24 @@ class Avatar extends React.Component {
       resizeIcon.y(calcResizerY(y) - 10)
     };
 
-    const getPreview = () => crop.toDataURL({
-      x: crop.x() - crop.radius(),
-      y: crop.y() - crop.radius(),
-      width: crop.radius() * 2,
-      height: crop.radius() * 2
-    });
+    const getPreview = () => {
+
+      const previewSizePx = 100;
+      const cropRadius = Math.max(1, crop.radius());
+
+      return crop
+        .clone()
+        .toDataURL({
+          x: crop.x() - cropRadius,
+          y: crop.y() - cropRadius,
+          width: cropRadius * 2,
+          height: cropRadius * 2,
+          pixelRatio: previewSizePx / (cropRadius * 2)
+        });
+
+    };
+
+
 
     const onScaleCallback = (scaleY) => {
       const scale = scaleY > 0 || isNotOutOfScale(scaleY) ? scaleY : 0;
