@@ -272,7 +272,7 @@ class Avatar extends React.Component {
 
     const getPreview = () => {
 
-      const previewSizePx = 100;
+      const previewSizePx = 140;
       const cropRadius = Math.max(1, crop.radius());
 
       return crop
